@@ -34,3 +34,23 @@ Users can manage tasks with Drag & Drop, collaborate with team members instantly
 ```bash
 git clone [https://github.com/xhhbbshbsj/CollabFlow-AI.git](https://github.com/xhhbbshbsj/CollabFlow-AI.git)
 cd CollabFlow-AI
+
+2. Setup Server (Node.js)
+cd server
+npm install
+# Create a .env file with: MONGO_URI, JWT_SECRET
+npm start
+
+3. Setup AI Engine (Python)
+cd ai-engine
+# Create a venv (optional) and install dependencies
+pip install fastapi uvicorn google-generativeai
+# Update API Key in main.py
+uvicorn main:app --reload --port 8000
+
+4. Start Client (React)
+cd client
+npm install
+npm run dev
+
+Built by Snehangshu Pal
