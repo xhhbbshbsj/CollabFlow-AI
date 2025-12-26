@@ -11,9 +11,13 @@ dotenv.config();
 
 const app = express();
 const httpServer = createServer(app);
+
+// ----------------------------------------------------
+// ⚠️ UPDATED: Allow connections from ANYWHERE ("*")
+// ----------------------------------------------------
 const io = new Server(httpServer, {
   cors: {
-    origin: "http://localhost:5173", // Allow frontend connection
+    origin: "*", 
     methods: ["GET", "POST"]
   }
 });
@@ -34,15 +38,12 @@ app.get("/", (req, res) => {
 io.on("connection", (socket) => {
   console.log("A user connected:", socket.id);
 
-  // 1. Join a specific Board "Room"
   socket.on("joinBoard", (boardId) => {
     socket.join(boardId);
     console.log(`User ${socket.id} joined board: ${boardId}`);
   });
 
-  // 2. Listen for Board Updates from Frontend
   socket.on("updateBoard", ({ boardId, boardData }) => {
-    // 3. Broadcast to everyone ELSE in that room
     socket.to(boardId).emit("boardUpdated", boardData);
   });
 
