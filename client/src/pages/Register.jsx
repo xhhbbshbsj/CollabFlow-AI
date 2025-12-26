@@ -18,7 +18,7 @@ const Register = () => {
     e.preventDefault();
     try {
       // Send data to backend
-      const res = await axios.post("http://localhost:5000/api/auth/register", formData);
+      const res = await axios.post("https://collabflow-ai-production-3494.up.railway.app//api/auth/register", formData);
       
       // If successful, save token and alert
       console.log("Success:", res.data);

@@ -10,7 +10,7 @@ const Dashboard = () => {
     const fetchBoards = async () => {
       try {
         const token = localStorage.getItem("token");
-        const res = await axios.get("http://localhost:5000/api/boards", {
+        const res = await axios.get("https://collabflow-ai-production-3494.up.railway.app//api/boards", {
           headers: { Authorization: token },
         });
         setBoards(res.data);
@@ -29,7 +29,7 @@ const Dashboard = () => {
     try {
       const token = localStorage.getItem("token");
       const res = await axios.post(
-        "http://localhost:5000/api/boards",
+        "https://collabflow-ai-production-3494.up.railway.app//api/boards",
         { title: newBoardTitle },
         { headers: { Authorization: token } }
       );

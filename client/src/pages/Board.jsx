@@ -20,7 +20,7 @@ const Board = () => {
       return; 
     }
     
-    socketRef.current = io("http://localhost:5000");
+    socketRef.current = io("https://collabflow-ai-production-3494.up.railway.app/");
     socketRef.current.emit("joinBoard", boardId);
     
     socketRef.current.on("boardUpdated", (newBoardData) => {
@@ -37,7 +37,7 @@ const Board = () => {
     const fetchBoard = async () => {
       try {
         const token = localStorage.getItem("token");
-        const res = await axios.get(`http://localhost:5000/api/boards/${boardId}`, {
+        const res = await axios.get(`https://collabflow-ai-production-3494.up.railway.app/api/boards/${boardId}`, {
           headers: { Authorization: token },
         });
         setBoardData(res.data);
@@ -79,7 +79,7 @@ const Board = () => {
 
     try {
       const token = localStorage.getItem("token");
-      await axios.put(`http://localhost:5000/api/boards/${boardId}`, newBoard, {
+      await axios.put(`https://collabflow-ai-production-3494.up.railway.app/api/boards/${boardId}`, newBoard, {
         headers: { Authorization: token },
       });
     } catch (err) {
@@ -108,7 +108,7 @@ const Board = () => {
 
     try {
         const token = localStorage.getItem("token");
-        await axios.put(`http://localhost:5000/api/boards/${boardId}`, newBoard, {
+        await axios.put(`https://collabflow-ai-production-3494.up.railway.app/api/boards/${boardId}`, newBoard, {
           headers: { Authorization: token },
         });
     } catch (err) {
@@ -123,7 +123,7 @@ const Board = () => {
     setIsGenerating(true);
     try {
         const token = localStorage.getItem("token");
-        const res = await axios.post("http://localhost:5000/api/boards/generate-ai", 
+        const res = await axios.post("https://collabflow-ai-production-3494.up.railway.app/api/boards/generate-ai", 
             { boardId, topic: newTask },
             { headers: { Authorization: token } }
         );
@@ -164,7 +164,7 @@ const Board = () => {
 
     try {
         const token = localStorage.getItem("token");
-        await axios.delete(`http://localhost:5000/api/boards/${boardId}/tasks/${taskId}`, {
+        await axios.delete(`https://collabflow-ai-production-3494.up.railway.app/api/boards/${boardId}/tasks/${taskId}`, {
             headers: { Authorization: token }
         });
     } catch (err) {
