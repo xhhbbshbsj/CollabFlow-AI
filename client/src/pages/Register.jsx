@@ -17,19 +17,19 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // Send data to backend
-      const res = await axios.post("https://collabflow-ai-production-3494.up.railway.app//api/auth/register", formData);
-      
-      // If successful, save token and alert
+      // FIXED: Removed the extra slash "/" after .app
+      const res = await axios.post("https://collabflow-ai-production-3494.up.railway.app/api/auth/register", formData);
+
       console.log("Success:", res.data);
       alert("Registration Successful!");
-      localStorage.setItem("token", res.data.token); // Save JWT
-      navigate("/"); // Go to home
+      localStorage.setItem("token", res.data.token); 
+      navigate("/"); 
     } catch (err) {
       console.error(err);
-      alert(err.response?.data?.message || "Registration Failed");
+      // Helper to see exactly what failed in the alert
+      alert(err.response?.data?.message || "Registration Failed (Check Console)");
     }
-  };
+};
 
   return (
     <div className="flex justify-center items-center h-screen bg-gray-100">

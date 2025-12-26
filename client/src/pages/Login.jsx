@@ -17,7 +17,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("https://collabflow-ai-production-3494.up.railway.app//api/auth/login", formData);
+      const res = await axios.post("https://collabflow-ai-production-3494.up.railway.app/api/auth/login", formData);
       
       console.log("Login Success:", res.data);
       localStorage.setItem("token", res.data.token);
